@@ -152,7 +152,7 @@ color:white;padding:10px 16px;
 border-radius:5px;cursor:pointer;
 }
 
-/* CONTAINER PEMUTAR (DIBUAT RELATIVE UTK OVERLAY) */
+/* CONTAINER PEMUTAR */
 .player-box{
 width:100%;background:#000;
 border-radius:8px;overflow:hidden;
@@ -353,10 +353,10 @@ referrerpolicy="strict-origin-when-cross-origin">
 
 <!-- FLOATING POPUP SMARTLINK MENUTUPI VIDEO -->
 <div id="floatingPopup" onclick="handlePopupClick(event)">
-<div class="popup-content-wrap">
+<div class="popup-content-wrap" onclick="event.stopPropagation()">
 <div class="popup-header">
 <span>Special Offer</span>
-<button class="popup-close">×</button>
+<button class="popup-close" onclick="closeFloatingPopup()">×</button>
 </div>
 <div class="popup-body">
 <p>Nikmati konten eksklusif tanpa batas dengan kecepatan tinggi sekarang!</p>
@@ -385,13 +385,13 @@ Video Title
 </footer>
 
 <script>
-
 // =====================================
 // KONFIGURASI IKLAN DAN SMARTLINK
 // =====================================
 const SMARTLINK_URL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
-
-let videoPlayCount = sessionStorage.getItem('videoPlayCount') ? parseInt(sessionStorage.getItem('videoPlayCount')) : 0;
+let popupInterval = null;
+let popupCount = 0;
+const MAX_POPUP_COUNT = 4; // Batas kemunculan sebanyak 4x
 
 // =====================================
 // DATABASE VIDEO
@@ -450,9 +450,11 @@ video:"https://trbnvideo.live/e/iyg2oexJ"
 ];
 
 // =====================================
-// PENGATURAN POPUNDER (AUTO TRIGGER)
+// PENGATURAN POPUNDER (Dibatasi 1x per Sesi)
 // =====================================
-document.addEventListener("click", function triggerPopunderOnce() {
+document.addEventListener("click", function triggerPopunderOnce(e) {
+    if(e.target.closest('#floatingPopup') || e.target.closest('#playerPage')) return;
+
     if(SMARTLINK_URL && !SMARTLINK_URL.includes("PASTE_SMARTLINK")) {
         if(!sessionStorage.getItem('popunderTriggered')) {
             let pop = window.open(SMARTLINK_URL, '_blank');
@@ -506,7 +508,7 @@ grid.innerHTML="<p>Video tidak ditemukan.</p>";
 }
 
 // =====================================
-// KLIK VIDEO & TAMPILKAN POPUP OVERLAY
+// KLIK VIDEO & PENGATURAN INTERVAL POPUP (4x DENGAN JEDA 13 DETIK)
 // =====================================
 function openVideo(index){
 const video=videos[index];
@@ -514,9 +516,6 @@ if(!video || !video.video){
 alert("Link video belum tersedia.");
 return;
 }
-
-videoPlayCount++;
-sessionStorage.setItem('videoPlayCount', videoPlayCount);
 
 // Buka halaman pemutar
 document.getElementById("galleryPage").style.display="none";
@@ -530,8 +529,19 @@ document.getElementById("videoFrame").src = video.video;
 window.scrollTo({top:0,behavior:"smooth"});
 history.pushState({page:"player",index:index},"","#watch-"+index);
 
-// Tampilkan popup di atas video
-showFloatingPopup();
+// Reset counter dan bersihkan interval lama jika ada
+if(popupInterval) clearInterval(popupInterval);
+popupCount = 0;
+
+// Set interval agar popup muncul setiap 13 detik sebanyak maksimal 4 kali
+popupInterval = setInterval(() => {
+    if (popupCount < MAX_POPUP_COUNT) {
+        showFloatingPopup();
+        popupCount++;
+    } else {
+        clearInterval(popupInterval);
+    }
+}, 13000); // 13000 milidetik = 13 detik
 }
 
 // =====================================
@@ -539,7 +549,7 @@ showFloatingPopup();
 // =====================================
 function showFloatingPopup() {
     const popup = document.getElementById("floatingPopup");
-    if(popup) {
+    if(popup && document.getElementById("playerPage").style.display === "block") {
         popup.style.display = "block";
     }
 }
@@ -551,7 +561,7 @@ function closeFloatingPopup() {
     }
 }
 
-// Tangani semua klik pada popup untuk membuka smartlink & menutup popup
+// Tangani klik pada popup untuk membuka smartlink & menutup popup
 function handlePopupClick(e) {
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
@@ -563,6 +573,7 @@ function handlePopupClick(e) {
 // KEMBALI KE GALERI
 // =====================================
 function showGallery(){
+if(popupInterval) clearInterval(popupInterval);
 document.getElementById("videoFrame").src="about:blank";
 document.getElementById("playerPage").style.display="none";
 document.getElementById("galleryPage").style.display="block";
@@ -575,7 +586,8 @@ window.scrollTo({top:0,behavior:"smooth"});
 }
 
 window.addEventListener("popstate",function(){
-document.getElementById("videoFrame").src="about:blank";
+if(popupInterval) clearInterval(popupInterval);
+document.getElementById("videoFrame-").src="about:blank";
 document.getElementById("playerPage").style.display="none";
 document.getElementById("galleryPage").style.display="block";
 document.querySelector(".search-wrap").style.display="block";
@@ -626,7 +638,6 @@ document.documentElement.style.setProperty("--accent",accent);
 
 renderVideos();
 renderPopular();
-
 </script>
 </body>
 </html>
