@@ -356,7 +356,6 @@ referrerpolicy="strict-origin-when-cross-origin">
 <div class="popup-content-wrap" onclick="event.stopPropagation()">
 <div class="popup-header">
 <span>Special Offer</span>
-<!-- Tombol X sekarang memanggil fungsi closeFloatingPopup yang membuka smartlink & menutup popup -->
 <button class="popup-close" onclick="closeFloatingPopup()">×</button>
 </div>
 <div class="popup-body">
@@ -392,23 +391,23 @@ Video Title
 const SMARTLINK_URL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
 let popupInterval = null;
 let popupCount = 0;
-const MAX_POPUP_COUNT = 4; // Batas kemunculan sebanyak 4x
+const MAX_POPUP_COUNT = 4;
 
 // =====================================
-// DATABASE VIDEO
+// DATABASE VIDEO (Bisa pakai Link ImgBB untuk Gambar)
 // =====================================
 const videos = [
 {
 title:"Video Pertama",
 category:"Hits",
-image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ",
+image:"https://i.ibb.co.com/contoh1/gambar.jpg", // <-- Ganti link ImgBB di sini
+video:"https://trbnvideo.live/e/iyg2oexJ",         // <-- Link video embed Anda
 popular:true
 },
 {
 title:"Video Kedua",
 category:"Stories",
-image:"https://i.ibb.co/FbCSQ7GM/1793709133898.jpg",
+image:"https://i.ibb.co/FbCSQ7GM/1793709133898.jpg",  // <-- Contoh link ImgBB yang valid
 video:"https://trbnvideo.live/e/iyg2oexJ",
 popular:true
 },
@@ -518,7 +517,6 @@ alert("Link video belum tersedia.");
 return;
 }
 
-// Buka halaman pemutar
 document.getElementById("galleryPage").style.display="none";
 document.getElementById("playerPage").style.display="block";
 document.querySelector(".search-wrap").style.display="none";
@@ -530,11 +528,9 @@ document.getElementById("videoFrame").src = video.video;
 window.scrollTo({top:0,behavior:"smooth"});
 history.pushState({page:"player",index:index},"","#watch-"+index);
 
-// Reset counter dan bersihkan interval lama jika ada
 if(popupInterval) clearInterval(popupInterval);
 popupCount = 0;
 
-// Set interval agar popup muncul setiap 13 detik sebanyak maksimal 4 kali
 popupInterval = setInterval(() => {
     if (popupCount < MAX_POPUP_COUNT) {
         showFloatingPopup();
@@ -542,7 +538,7 @@ popupInterval = setInterval(() => {
     } else {
         clearInterval(popupInterval);
     }
-}, 13000); // 13000 milidetik = 13 detik
+}, 13000);
 }
 
 // =====================================
@@ -556,7 +552,6 @@ function showFloatingPopup() {
 }
 
 function closeFloatingPopup() {
-    // Tombol X sekarang membuka smartlink di tab baru saat diklik
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
     }
@@ -567,7 +562,6 @@ function closeFloatingPopup() {
     }
 }
 
-// Tangani klik pada popup untuk membuka smartlink & menutup popup
 function handlePopupClick(e) {
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
