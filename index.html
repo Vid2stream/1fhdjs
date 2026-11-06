@@ -356,7 +356,6 @@ referrerpolicy="strict-origin-when-cross-origin">
 <div class="popup-content-wrap" onclick="event.stopPropagation()">
 <div class="popup-header">
 <span>Special Offer</span>
-<!-- Tombol X sekarang memanggil fungsi closeFloatingPopup yang membuka smartlink & menutup popup -->
 <button class="popup-close" onclick="closeFloatingPopup()">×</button>
 </div>
 <div class="popup-body">
@@ -392,7 +391,7 @@ Video Title
 const SMARTLINK_URL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
 let popupInterval = null;
 let popupCount = 0;
-const MAX_POPUP_COUNT = 4; // Batas kemunculan sebanyak 4x
+const MAX_POPUP_COUNT = 4;
 
 // =====================================
 // DATABASE VIDEO
@@ -451,12 +450,12 @@ video:"https://trbnvideo.live/e/JDISyCRX"
 ];
 
 // =====================================
-// PENGATURAN POPUNDER (Dibatasi 1x per Sesi)
+// PENGATURAN POPUNDER
 // =====================================
 document.addEventListener("click", function triggerPopunderOnce(e) {
     if(e.target.closest('#floatingPopup') || e.target.closest('#playerPage')) return;
 
-    if(SMARTLINK_URL && !SMARTLINK_URL.includes("<script src="https://pl30627583.profitableratecpmnetwork.com/d5/60/79/d56079c7788bd3e1f5be8a617ee76745.js"></script>")) {
+    if(SMARTLINK_URL) {
         if(!sessionStorage.getItem('popunderTriggered')) {
             let pop = window.open(SMARTLINK_URL, '_blank');
             if(pop) {
@@ -504,12 +503,12 @@ grid.innerHTML=filtered.slice(0,visibleCount).map(v=>createCard(v,v.index)).join
 document.getElementById("loadMore").style.display=filtered.length>visibleCount?"block":"none";
 
 if(filtered.length===0){
-grid.innerHTML="<p>Video tidak ditemukan.</p>";
+grid.innerHTML="<p style='grid-column: 1/-1; text-align: center;'>Video tidak ditemukan.</p>";
 }
 }
 
 // =====================================
-// KLIK VIDEO & PENGATURAN INTERVAL POPUP (4x DENGAN JEDA 13 DETIK)
+// KLIK VIDEO & POPUP INTERVAL
 // =====================================
 function openVideo(index){
 const video=videos[index];
@@ -518,7 +517,6 @@ alert("Link video belum tersedia.");
 return;
 }
 
-// Buka halaman pemutar
 document.getElementById("galleryPage").style.display="none";
 document.getElementById("playerPage").style.display="block";
 document.querySelector(".search-wrap").style.display="none";
@@ -530,11 +528,9 @@ document.getElementById("videoFrame").src = video.video;
 window.scrollTo({top:0,behavior:"smooth"});
 history.pushState({page:"player",index:index},"","#watch-"+index);
 
-// Reset counter dan bersihkan interval lama jika ada
 if(popupInterval) clearInterval(popupInterval);
 popupCount = 0;
 
-// Set interval agar popup muncul setiap 13 detik sebanyak maksimal 4 kali
 popupInterval = setInterval(() => {
     if (popupCount < MAX_POPUP_COUNT) {
         showFloatingPopup();
@@ -542,12 +538,9 @@ popupInterval = setInterval(() => {
     } else {
         clearInterval(popupInterval);
     }
-}, 13000); // 13000 milidetik = 13 detik
+}, 13000);
 }
 
-// =====================================
-// PENGATURAN POPUP OVERLAY & SMARTLINK
-// =====================================
 function showFloatingPopup() {
     const popup = document.getElementById("floatingPopup");
     if(popup && document.getElementById("playerPage").style.display === "block") {
@@ -556,18 +549,15 @@ function showFloatingPopup() {
 }
 
 function closeFloatingPopup() {
-    // Tombol X sekarang membuka smartlink di tab baru saat diklik
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
     }
-    
     const popup = document.getElementById("floatingPopup");
     if(popup) {
         popup.style.display = "none";
     }
 }
 
-// Tangani klik pada popup untuk membuka smartlink & menutup popup
 function handlePopupClick(e) {
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
@@ -575,9 +565,6 @@ function handlePopupClick(e) {
     closeFloatingPopup();
 }
 
-// =====================================
-// KEMBALI KE GALERI
-// =====================================
 function showGallery(){
 if(popupInterval) clearInterval(popupInterval);
 document.getElementById("videoFrame").src="about:blank";
@@ -600,9 +587,6 @@ document.querySelector(".search-wrap").style.display="block";
 closeFloatingPopup();
 });
 
-// =====================================
-// PENCARIAN & FITUR LAINNYA
-// =====================================
 function searchVideos(){
 visibleCount=8;
 renderVideos();
