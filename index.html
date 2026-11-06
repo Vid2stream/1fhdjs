@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StreamGallery - Video Collection</title>
+<title>HUMSTER STREAM - Video Collection</title>
 <meta name="description" content="Discover the latest video collection.">
 
 <style>
@@ -356,6 +356,7 @@ referrerpolicy="strict-origin-when-cross-origin">
 <div class="popup-content-wrap" onclick="event.stopPropagation()">
 <div class="popup-header">
 <span>Special Offer</span>
+<!-- Tombol X sekarang memanggil fungsi closeFloatingPopup yang membuka smartlink & menutup popup -->
 <button class="popup-close" onclick="closeFloatingPopup()">×</button>
 </div>
 <div class="popup-body">
@@ -391,61 +392,61 @@ Video Title
 const SMARTLINK_URL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
 let popupInterval = null;
 let popupCount = 0;
-const MAX_POPUP_COUNT = 4;
+const MAX_POPUP_COUNT = 4; // Batas kemunculan sebanyak 4x
 
 // =====================================
-// DATABASE VIDEO (Bisa pakai Link ImgBB untuk Gambar)
+// DATABASE VIDEO
 // =====================================
 const videos = [
 {
-title:"Video Pertama",
+title:"adik ipar dengan gaya bebasnya",
 category:"Hits",
-image:"https://i.ibb.co.com/contoh1/gambar.jpg", // <-- Ganti link ImgBB di sini
-video:"https://trbnvideo.live/e/iyg2oexJ",         // <-- Link video embed Anda
+image:"https://i.ibb.co.com/C5tThyW9/1791544190435.jpg",
+video:"https://trbnvideo.live/e/WjOck8Ms",
 popular:true
 },
 {
-title:"Video Kedua",
+title:"gadis sma viral",
 category:"Stories",
-image:"https://i.ibb.co/FbCSQ7GM/1793709133898.jpg",  // <-- Contoh link ImgBB yang valid
+image:"https://i.ibb.co/FbCSQ7GM/1793709133898.jpg",
 video:"https://trbnvideo.live/e/iyg2oexJ",
 popular:true
 },
 {
-title:"Video Ketiga",
+title:"diam tapi mematikan",
 category:"Pictures",
-image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ"
+image:"https://i.ibb.co/F4CYvVYF/1792584988211.jpg",
+video:"https://trbnvideo.live/e/ykLqefbb"
 },
 {
-title:"Video Keempat",
+title:"samping rumah sangat menggoda",
 category:"Live",
-image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ"
+image:"https://i.ibb.co.com/6cG0rzdh/1791385102152.jpg",
+video:"https://trbnvideo.live/e/nScLzGtT"
 },
 {
-title:"Video Kelima",
+title:"Dibiki lemas sama om",
 category:"Movies",
-image:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ"
+image:"https://i.ibb.co.com/yngR3Zqs/1792574108629.jpg",
+video:"https://trbnvideo.live/e/mWvFTPn1"
 },
 {
-title:"Video Keenam",
+title:"suasananya berubah jadi tegang",
 category:"Series",
-image:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ"
+image:"https://i.ibb.co/nM1CYqXH/1793109556370.jpg",
+video:"https://trbnvideo.live/e/z5Raya5J"
 },
 {
-title:"Video Ketujuh",
+title:"desahannya bikin kangen",
 category:"Stories",
-image:"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ"
+image:"https://i.ibb.co/M5kH240s/1791812881455.jpg",
+video:"https://trbnvideo.live/e/7BxtdNww"
 },
 {
-title:"Video Kedelapan",
+title:"abg jaman sekarang",
 category:"Anime",
-image:"https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=700",
-video:"https://trbnvideo.live/e/iyg2oexJ"
+image:"https://i.ibb.co/5XM660kB/1792568203963.jpg",
+video:"https://trbnvideo.live/e/JDISyCRX"
 }
 ];
 
@@ -455,7 +456,7 @@ video:"https://trbnvideo.live/e/iyg2oexJ"
 document.addEventListener("click", function triggerPopunderOnce(e) {
     if(e.target.closest('#floatingPopup') || e.target.closest('#playerPage')) return;
 
-    if(SMARTLINK_URL && !SMARTLINK_URL.includes("PASTE_SMARTLINK")) {
+    if(SMARTLINK_URL && !SMARTLINK_URL.includes("<script src="https://pl30627583.profitableratecpmnetwork.com/d5/60/79/d56079c7788bd3e1f5be8a617ee76745.js"></script>")) {
         if(!sessionStorage.getItem('popunderTriggered')) {
             let pop = window.open(SMARTLINK_URL, '_blank');
             if(pop) {
@@ -517,6 +518,7 @@ alert("Link video belum tersedia.");
 return;
 }
 
+// Buka halaman pemutar
 document.getElementById("galleryPage").style.display="none";
 document.getElementById("playerPage").style.display="block";
 document.querySelector(".search-wrap").style.display="none";
@@ -528,9 +530,11 @@ document.getElementById("videoFrame").src = video.video;
 window.scrollTo({top:0,behavior:"smooth"});
 history.pushState({page:"player",index:index},"","#watch-"+index);
 
+// Reset counter dan bersihkan interval lama jika ada
 if(popupInterval) clearInterval(popupInterval);
 popupCount = 0;
 
+// Set interval agar popup muncul setiap 13 detik sebanyak maksimal 4 kali
 popupInterval = setInterval(() => {
     if (popupCount < MAX_POPUP_COUNT) {
         showFloatingPopup();
@@ -538,7 +542,7 @@ popupInterval = setInterval(() => {
     } else {
         clearInterval(popupInterval);
     }
-}, 13000);
+}, 13000); // 13000 milidetik = 13 detik
 }
 
 // =====================================
@@ -552,6 +556,7 @@ function showFloatingPopup() {
 }
 
 function closeFloatingPopup() {
+    // Tombol X sekarang membuka smartlink di tab baru saat diklik
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
     }
@@ -562,6 +567,7 @@ function closeFloatingPopup() {
     }
 }
 
+// Tangani klik pada popup untuk membuka smartlink & menutup popup
 function handlePopupClick(e) {
     if(SMARTLINK_URL) {
         window.open(SMARTLINK_URL, '_blank');
