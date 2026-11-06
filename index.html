@@ -29,11 +29,9 @@ border-bottom:1px solid #293a50;
 position:sticky;top:0;z-index:20;
 }
 .topbar{
-max-width:1200px;margin:auto;
-padding:15px;
+max-width:1200px;margin:auto;padding:15px;
 display:flex;align-items:center;
-justify-content:space-between;
-flex-wrap:wrap;gap:15px;
+justify-content:space-between;flex-wrap:wrap;gap:15px;
 }
 .logo{font-size:23px;font-weight:bold}
 .logo span{color:var(--accent)}
@@ -41,34 +39,27 @@ nav{display:flex;gap:18px;flex-wrap:wrap}
 nav a{font-size:13px;color:#c5d0df}
 nav a:hover{color:var(--accent)}
 .search-wrap{
-max-width:1200px;margin:auto;
-padding:0 15px 14px;
+max-width:1200px;margin:auto;padding:0 15px 14px;
 }
 .search{
 width:100%;padding:13px;
 border:1px solid #34465e;
 background:#0d192a;color:white;
-border-radius:7px;font-size:14px;
-outline:none;
+border-radius:7px;font-size:14px;outline:none;
 }
 .container{
-max-width:1200px;
-margin:auto;padding:18px 15px;
+max-width:1200px;margin:auto;padding:18px 15px;
 }
 .category{
-display:flex;gap:9px;
-overflow-x:auto;padding:5px 0 18px;
-scrollbar-width:none;
+display:flex;gap:9px;overflow-x:auto;
+padding:5px 0 18px;scrollbar-width:none;
 }
 .category a{
-white-space:nowrap;
-background:var(--panel);
-padding:10px 15px;
-border-radius:5px;
+white-space:nowrap;background:var(--panel);
+padding:10px 15px;border-radius:5px;
 font-size:13px;color:#d7e0ed;
 }
-.category a.active,
-.category a:hover{
+.category a.active,.category a:hover{
 background:var(--accent);color:white;
 }
 .section-title{
@@ -85,19 +76,16 @@ grid-template-columns:repeat(4,minmax(0,1fr));
 gap:16px;
 }
 .video-card{
-background:var(--card);
-border-radius:7px;overflow:hidden;
-cursor:pointer;transition:.2s;
+background:var(--card);border-radius:7px;
+overflow:hidden;cursor:pointer;transition:.2s;
 }
 .video-card:hover{transform:translateY(-3px)}
 .thumbnail{
 width:100%;aspect-ratio:16/10;
-position:relative;background:#26364d;
-overflow:hidden;
+position:relative;background:#26364d;overflow:hidden;
 }
 .thumbnail img{
-width:100%;height:100%;
-object-fit:cover;
+width:100%;height:100%;object-fit:cover;
 }
 .play-icon{
 position:absolute;left:50%;top:50%;
@@ -109,24 +97,19 @@ font-size:21px;color:white;
 }
 .video-info{padding:11px}
 .video-info h3{
-font-size:14px;line-height:1.4;
-margin:0 0 7px;
+font-size:14px;line-height:1.4;margin:0 0 7px;
 }
 .video-info p{
-font-size:11px;color:var(--muted);
-margin:0;
+font-size:11px;color:var(--muted);margin:0;
 }
 .tag{
-display:inline-block;
-font-size:10px;color:white;
-background:var(--accent);
-padding:4px 7px;border-radius:3px;
-margin-top:8px;
+display:inline-block;font-size:10px;color:white;
+background:var(--accent);padding:4px 7px;
+border-radius:3px;margin-top:8px;
 }
 .load-more{
-display:block;margin:25px auto;
-padding:12px 30px;border:0;
-border-radius:5px;background:var(--accent);
+display:block;margin:25px auto;padding:12px 30px;
+border:0;border-radius:5px;background:var(--accent);
 color:white;font-weight:bold;cursor:pointer;
 }
 .popular{
@@ -134,18 +117,15 @@ margin-top:35px;background:var(--panel);
 padding:16px;border-radius:7px;
 }
 .popular-item{
-display:flex;align-items:center;
-gap:12px;padding:10px 0;
-border-bottom:1px solid #34465e;
+display:flex;align-items:center;gap:12px;
+padding:10px 0;border-bottom:1px solid #34465e;
 cursor:pointer;
 }
 .popular-item img{
-width:90px;height:58px;
-object-fit:cover;border-radius:4px;
+width:90px;height:58px;object-fit:cover;
+border-radius:4px;
 }
-.popular-item h4{
-font-size:13px;margin:0 0 5px;
-}
+.popular-item h4{font-size:13px;margin:0 0 5px}
 .popular-item small{color:var(--muted)}
 footer{
 margin-top:35px;padding:25px 15px;
@@ -153,14 +133,53 @@ background:#0c1625;text-align:center;
 color:var(--muted);font-size:12px;
 }
 .theme-buttons{
-display:flex;gap:8px;flex-wrap:wrap;
-margin:15px 0;
+display:flex;gap:8px;flex-wrap:wrap;margin:15px 0;
 }
 .theme-buttons button{
-border:0;padding:8px 13px;
-border-radius:4px;cursor:pointer;
-background:#293c55;color:white;
+border:0;padding:8px 13px;border-radius:4px;
+cursor:pointer;background:#293c55;color:white;
 }
+
+/* PEMUTAR VIDEO */
+#playerPage{display:none}
+.player-heading{
+display:flex;align-items:center;
+justify-content:space-between;gap:10px;
+margin:10px 0 15px;
+}
+.back-button{
+border:0;background:var(--accent);
+color:white;padding:10px 16px;
+border-radius:5px;cursor:pointer;
+}
+.player-box{
+width:100%;background:#000;
+border-radius:8px;overflow:hidden;
+position:relative;
+}
+.player-frame{
+width:100%;aspect-ratio:16/9;
+border:0;display:block;background:#000;
+}
+.player-title{
+font-size:18px;margin:15px 0 7px;
+}
+.player-category{
+font-size:12px;color:var(--muted);
+margin-bottom:15px;
+}
+.push-area{
+margin:18px 0;padding:15px;
+border:1px solid #34465e;
+background:var(--panel);
+border-radius:7px;
+}
+.push-area h3{font-size:14px;margin:0 0 8px}
+.push-area p{
+font-size:12px;color:var(--muted);margin:0;
+}
+.hidden{display:none!important}
+
 @media(max-width:850px){
 .video-grid{grid-template-columns:repeat(3,1fr)}
 }
@@ -173,20 +192,29 @@ gap:10px;
 .video-info h3{font-size:12px}
 .container{padding:12px}
 nav{gap:13px}
+.player-heading{align-items:flex-start}
+.player-frame{aspect-ratio:16/9}
 }
 </style>
-</head>
 
+<!-- =================================
+     TEMPAT SCRIPT IN-PAGE PUSH
+     Tempel kode resmi dari dashboard
+     Adsterra di bagian ini jika diminta
+     ================================= -->
+
+</head>
 <body>
 
-<header>
+<header id="siteHeader">
 <div class="topbar">
-<a class="logo" href="#">STREAM<span>GALLERY</span></a>
-
+<a class="logo" href="#" onclick="showGallery();return false">
+STREAM<span>GALLERY</span>
+</a>
 <nav>
-<a href="#">Home</a>
-<a href="#gallery">Gallery</a>
-<a href="#popular">Popular</a>
+<a href="#" onclick="showGallery();return false">Home</a>
+<a href="#gallery" onclick="showGallery()">Gallery</a>
+<a href="#popular" onclick="showGallery()">Popular</a>
 <a href="#help">Help Center</a>
 </nav>
 </div>
@@ -198,7 +226,8 @@ oninput="searchVideos()">
 </div>
 </header>
 
-<main class="container">
+<!-- GALERI -->
+<main class="container" id="galleryPage">
 
 <div class="category">
 <a class="active" href="#" data-cat="All">Best of</a>
@@ -236,10 +265,53 @@ onclick="loadMore()">Load more posts</button>
 </div>
 <div id="popularList"></div>
 </section>
+</main>
+
+<!-- HALAMAN PEMUTAR -->
+<main class="container" id="playerPage">
+
+<div class="player-heading">
+<h2 style="font-size:18px;margin:0">
+StreamGallery Player
+</h2>
+<button class="back-button" onclick="showGallery()">
+← Kembali
+</button>
+</div>
+
+<div class="player-box">
+<iframe
+id="videoFrame"
+class="player-frame"
+src="about:blank"
+allow="autoplay; fullscreen; picture-in-picture"
+allowfullscreen
+referrerpolicy="strict-origin-when-cross-origin">
+</iframe>
+</div>
+
+<h2 class="player-title" id="playerTitle">
+Video Title
+</h2>
+
+<div class="player-category" id="playerCategory"></div>
+
+<!-- AREA INFORMASI IKLAN -->
+<section class="push-area">
+<h3>Recommended Content</h3>
+<p>Discover more content and recommendations.</p>
+
+<!--
+AREA IN-PAGE PUSH:
+Kode iklan In-Page Push dari dashboard
+penyedia iklan dipasang sesuai instruksi
+jaringan iklan di sini.
+-->
+</section>
 
 </main>
 
-<footer id="help">
+<footer id="siteFooter">
 <p>Copyright © 2026 StreamGallery</p>
 <p>Home | Privacy Policy | Contact | Help Center</p>
 </footer>
@@ -247,12 +319,17 @@ onclick="loadMore()">Load more posts</button>
 <script>
 
 // =====================================
+// KONFIGURASI IKLAN DAN SMARTLINK
+// =====================================
+
+// GANTI DENGAN SMARTLINK MILIK ANDA
+const SMARTLINK_URL = "PASTE_SMARTLINK_ANDA_DI_SINI";
+
+// =====================================
 // DATABASE VIDEO
-// TAMBAHKAN VIDEO BARU DI SINI
 // =====================================
 
 const videos = [
-
 {
 title:"Video Pertama",
 category:"Hits",
@@ -260,7 +337,6 @@ image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ",
 popular:true
 },
-
 {
 title:"Video Kedua",
 category:"Stories",
@@ -268,49 +344,42 @@ image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ",
 popular:true
 },
-
 {
 title:"Video Ketiga",
 category:"Pictures",
 image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ"
 },
-
 {
 title:"Video Keempat",
 category:"Live",
 image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ"
 },
-
 {
 title:"Video Kelima",
 category:"Movies",
 image:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ"
 },
-
 {
 title:"Video Keenam",
 category:"Series",
 image:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ"
 },
-
 {
 title:"Video Ketujuh",
 category:"Stories",
 image:"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ"
 },
-
 {
 title:"Video Kedelapan",
 category:"Anime",
 image:"https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=700",
 video:"https://trbnvideo.live/e/iyg2oexJ"
 }
-
 ];
 
 // =====================================
@@ -321,42 +390,30 @@ let activeCategory="All";
 let visibleCount=8;
 
 function createCard(video,index){
-
 return `
-<article class="video-card"
-onclick="openVideo(${index})">
-
+<article class="video-card" onclick="openVideo(${index})">
 <div class="thumbnail">
-<img src="${video.image}"
-alt="${video.title}" loading="lazy">
-
+<img src="${video.image}" alt="${video.title}" loading="lazy">
 <div class="play-icon">▶</div>
 </div>
-
 <div class="video-info">
 <h3>${video.title}</h3>
 <p>Category: ${video.category}</p>
 <span class="tag">${video.category}</span>
 </div>
-
-</article>
-`;
+</article>`;
 }
 
 function renderVideos(){
-
 const grid=document.getElementById("videoGrid");
 
 let filtered=videos.map((v,i)=>({...v,index:i}));
 
 if(activeCategory!=="All"){
-filtered=filtered.filter(v=>
-v.category===activeCategory
-);
+filtered=filtered.filter(v=>v.category===activeCategory);
 }
 
-const keyword=
-document.getElementById("search").value.toLowerCase();
+const keyword=document.getElementById("search").value.toLowerCase();
 
 filtered=filtered.filter(v=>
 v.title.toLowerCase().includes(keyword)
@@ -373,25 +430,79 @@ filtered.length>visibleCount?"block":"none";
 if(filtered.length===0){
 grid.innerHTML="<p>Video tidak ditemukan.</p>";
 }
-
 }
 
 // =====================================
-// REDIRECT EXASTREAM
+// KLIK VIDEO: SMARTLINK + PLAYER
 // =====================================
 
 function openVideo(index){
 
 const video=videos[index];
 
-if(!video.video){
+if(!video || !video.video){
 alert("Link video belum tersedia.");
 return;
 }
 
-window.location.href=video.video;
-
+// Buka smartlink melalui klik langsung pengunjung.
+// Tab baru digunakan agar halaman pemutar tetap terbuka.
+if(SMARTLINK_URL &&
+!SMARTLINK_URL.includes("PASTE_SMARTLINK")){
+const adWindow=window.open(SMARTLINK_URL,"_blank");
+if(adWindow){
+adWindow.opener=null;
 }
+}
+
+// Buka halaman pemutar di halaman utama
+document.getElementById("galleryPage").style.display="none";
+document.getElementById("playerPage").style.display="block";
+
+// Sembunyikan pencarian ketika menonton
+document.querySelector(".search-wrap").style.display="none";
+
+// Atur informasi video
+document.getElementById("playerTitle").textContent=video.title;
+document.getElementById("playerCategory").textContent=
+"Category: "+video.category;
+
+// Masukkan link embed ExaStream
+document.getElementById("videoFrame").src=video.video;
+
+// Pindahkan layar ke atas
+window.scrollTo({top:0,behavior:"smooth"});
+
+// Ubah URL browser tanpa reload
+history.pushState({page:"player",index:index},"","#watch-"+index);
+}
+
+// =====================================
+// KEMBALI KE GALERI
+// =====================================
+
+function showGallery(){
+
+document.getElementById("videoFrame").src="about:blank";
+
+document.getElementById("playerPage").style.display="none";
+document.getElementById("galleryPage").style.display="block";
+
+document.querySelector(".search-wrap").style.display="block";
+
+history.pushState({page:"gallery"},"",
+window.location.pathname+window.location.search);
+
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// Tombol Back Android/browser
+window.addEventListener("popstate",function(){
+document.getElementById("videoFrame").src="about:blank";
+document.getElementById("playerPage").style.display="none";
+document.getElementById("galleryPage").style.display="block";
+document.querySelector(".search-wrap").style.display="block";
+});
 
 // =====================================
 // PENCARIAN
@@ -417,24 +528,17 @@ renderVideos();
 
 document.querySelectorAll(".category a")
 .forEach(link=>{
-
 link.addEventListener("click",function(e){
-
 e.preventDefault();
 
 document.querySelectorAll(".category a")
 .forEach(a=>a.classList.remove("active"));
 
 this.classList.add("active");
-
 activeCategory=this.dataset.cat;
-
 visibleCount=8;
-
 renderVideos();
-
 });
-
 });
 
 // =====================================
@@ -442,28 +546,20 @@ renderVideos();
 // =====================================
 
 function renderPopular(){
-
 const popular=videos
 .map((v,i)=>({...v,index:i}))
 .filter(v=>v.popular);
 
 document.getElementById("popularList").innerHTML=
 popular.map(v=>`
-
-<div class="popular-item"
-onclick="openVideo(${v.index})">
-
+<div class="popular-item" onclick="openVideo(${v.index})">
 <img src="${v.image}" alt="${v.title}">
-
 <div>
 <h4>${v.title}</h4>
 <small>${v.category}</small>
 </div>
-
 </div>
-
 `).join("");
-
 }
 
 // =====================================
@@ -471,13 +567,8 @@ onclick="openVideo(${v.index})">
 // =====================================
 
 function setTheme(bg,accent){
-
-document.documentElement.style
-.setProperty("--bg",bg);
-
-document.documentElement.style
-.setProperty("--accent",accent);
-
+document.documentElement.style.setProperty("--bg",bg);
+document.documentElement.style.setProperty("--accent",accent);
 }
 
 // =====================================
@@ -488,6 +579,14 @@ renderVideos();
 renderPopular();
 
 </script>
+
+<!-- =====================================
+     KODE RESMI IN-PAGE PUSH
+     Tempel script dari dashboard iklan
+     di bawah komentar ini.
+     Jangan mengganti script dengan URL
+     smartlink biasa.
+     ===================================== -->
 
 </body>
 </html>
