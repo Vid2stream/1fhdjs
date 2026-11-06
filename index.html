@@ -356,6 +356,7 @@ referrerpolicy="strict-origin-when-cross-origin">
 <div class="popup-content-wrap" onclick="event.stopPropagation()">
 <div class="popup-header">
 <span>Special Offer</span>
+<!-- Tombol X sekarang memanggil fungsi closeFloatingPopup yang membuka smartlink & menutup popup -->
 <button class="popup-close" onclick="closeFloatingPopup()">×</button>
 </div>
 <div class="popup-body">
@@ -555,6 +556,11 @@ function showFloatingPopup() {
 }
 
 function closeFloatingPopup() {
+    // Tombol X sekarang membuka smartlink di tab baru saat diklik
+    if(SMARTLINK_URL) {
+        window.open(SMARTLINK_URL, '_blank');
+    }
+    
     const popup = document.getElementById("floatingPopup");
     if(popup) {
         popup.style.display = "none";
@@ -587,7 +593,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 
 window.addEventListener("popstate",function(){
 if(popupInterval) clearInterval(popupInterval);
-document.getElementById("videoFrame-").src="about:blank";
+document.getElementById("videoFrame").src="about:blank";
 document.getElementById("playerPage").style.display="none";
 document.getElementById("galleryPage").style.display="block";
 document.querySelector(".search-wrap").style.display="block";
