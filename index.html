@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <script>(function(s){s.dataset.zone='11740128',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-  <meta name="monetag" content="da0d80a5c ebbd2aa5575234d8507b148">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stream asia</title>
+    <title>Special Edition - Saluran Pilihan</title>
     <!-- Google Fonts & FontAwesome untuk ikon -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,217 +16,469 @@
             font-family: 'Inter', sans-serif;
         }
         body {
-            background-color: #0b0f19;
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-        .container {
-            width: 100%;
-            max-width: 480px;
-            background: #111827;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-        .video-preview {
-            position: relative;
-            width: 100%;
-            height: 240px;
-            background: #1f2937;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .video-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(4px) brightness(0.6);
-            transform: scale(1.05);
-        }
-        .play-btn-overlay {
-            position: absolute;
-            width: 75px;
-            height: 75px;
-            background: rgba(225, 29, 72, 0.9);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 28px;
-            box-shadow: 0 0 30px rgba(225, 29, 72, 0.7);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: pulse-ring 2s infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(225, 29, 72, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
-        }
-        .video-preview:hover .play-btn-overlay {
-            transform: scale(1.1);
-            background: rgb(244, 63, 94);
-        }
-        .video-duration {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.75);
-            padding: 4px 8px;
-            font-size: 11px;
-            font-weight: 600;
-            border-radius: 4px;
-            color: #fff;
-        }
-        .content-body {
-            padding: 20px;
-        }
-        .meta-tags {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .tag {
-            background: rgba(225, 29, 72, 0.15);
-            color: #fb7185;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-        h1 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            background-color: #0b0b1a;
             color: #ffffff;
-            line-height: 1.4;
+            padding-bottom: 70px;
         }
-        .video-stats {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-bottom: 20px;
+        header {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 12px;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(11, 11, 26, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .btn-watch {
+        .logo-area {
             display: flex;
-            justify-content: center;
             align-items: center;
             gap: 10px;
-            width: 100%;
-            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
-            color: white;
+        }
+        .logo-icon {
+            background: linear-gradient(135deg, #8a2be2, #ff007f);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        .logo-text {
             font-weight: 700;
-            font-size: 15px;
-            padding: 15px;
-            border-radius: 12px;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(225, 29, 72, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            font-size: 14px;
+            background: linear-gradient(90deg, #fff, #b19cd9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .btn-watch:hover {
-            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(225, 29, 72, 0.5);
-        }
-        .btn-blog {
+        .header-icons {
             display: flex;
+            gap: 15px;
+        }
+        .header-icons i {
+            font-size: 18px;
+            background: #1a1a3a;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .hero-section {
+            padding: 20px;
+        }
+        .hero-section h1 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .hero-section p {
+            font-size: 13px;
+            color: #a0a0c0;
+            line-height: 1.4;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            margin: 20px 0 15px 0;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .badge-count {
+            background: #1a1a3a;
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: #b19cd9;
+            border: 1px solid #2d2d5a;
+        }
+        .container-cards {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .card {
+            background: #151530;
+            border: 1px solid #252550;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:active {
+            transform: scale(0.98);
+            border-color: #8a2be2;
+        }
+        .card-thumb {
+            width: 90px;
+            height: 65px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .card-info {
+            flex-grow: 1;
+        }
+        .card-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+            color: #fff;
+        }
+        .card-desc {
+            font-size: 11px;
+            color: #9090b0;
+            margin-bottom: 8px;
+        }
+        .card-tag {
+            display: inline-block;
+            background: #231942;
+            color: #d8b4fe;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .play-btn {
+            background: #ffffff;
+            color: #0b0b1a;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+            padding-left: 2px;
+        }
+        /* Navigasi Bawah */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #0b0b1a;
+            border-top: 1px solid #1a1a3a;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #707090;
+            font-size: 10px;
+            gap: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .nav-item i {
+            font-size: 16px;
+        }
+        .nav-item.active {
+            color: #b19cd9;
+        }
+
+        /* Styling In-Page Push Overlay Fullscreen */
+        #inpage-push-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 11, 26, 0.95);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            color: #94a3b8;
-            font-weight: 600;
-            font-size: 13px;
-            padding: 12px;
-            border-radius: 12px;
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.2s ease;
+            padding: 20px;
         }
-        .btn-blog:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .push-content {
+            background: #151530;
+            border: 2px solid #8a2be2;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            animation: popIn 0.3s ease-out;
+            position: relative;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .push-badge {
+            background: #ff007f;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .push-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
             color: #ffffff;
         }
-        .footer-note {
-            text-align: center;
-            font-size: 11px;
-            color: #6b7280;
-            margin-top: 15px;
+        .push-desc {
+            font-size: 13px;
+            color: #a0a0c0;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
-        .footer-note i {
-            color: #34d399;
+        .push-btn {
+            background: linear-gradient(135deg, #8a2be2, #ff007f);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+        .push-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #707090;
+            font-size: 18px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Thumbnail Video (Membuka Smartlink di Tab Baru, Video terbuka otomatis di tab ini lewat script) -->
-        <a href="https://uplcm.com/4/11744117" class="video-preview" target="_blank" onclick="playVideoDirectly(event)">
-            <img src="https://i.ibb.co.com/6cB8Yqt5/1794065568051.jpg" alt="Video Thumbnail">
-            <div class="play-btn-overlay">
-                <i class="fa-solid fa-play"></i>
+    <!-- Header -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i class="fa-solid fa-play" style="color: white; font-size: 14px;"></i>
             </div>
-            <div class="video-duration">
-                <i class="fa-solid fa-circle" style="font-size: 8px; color: #ef4444;"></i> 
+            <div class="logo-text">SPECIAL EDITION</div>
+        </div>
+        <div class="header-icons">
+            <i class="fa-solid fa-search"></i>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>PILIHAN TERBAIK</h1>
+        <p>Jelajahi kreator pilihan, temukan inspirasi baru, dan nikmati konten favoritmu di satu tempat.</p>
+    </div>
+
+    <!-- Section Title -->
+    <div class="section-header">
+        <span class="section-title">SALURAN PILIHAN</span>
+        <span class="badge-count">10 SALURAN</span>
+    </div>
+
+    <!-- Daftar Video Card (Total 10 Video) -->
+    <div class="container-cards">
+        
+        <!-- Card 1 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/paeh6a6virg0')">
+            <img src="https://i.ibb.co/1tjh0qKJ/fff341f1-4e92-4dec-bfa2-962e2e12833b.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">MOMEN SPESIAL BERSAMA REKAN KERJA</div>
+                <div class="card-desc">Dokumenter Kehidupan Sehari-hari</div>
+                <span class="card-tag">Vlog & Story</span>
             </div>
-        </a>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
 
-        <!-- Bagian Informasi Video -->
-        <div class="content-body">
-            <div class="meta-tags">
-                <span class="tag"><i class="fa-solid fa-fire"></i> Hot Trend</span>
-                <span class="tag"><i class="fa-solid fa-shield"></i> HD Quality</span>
+        <!-- Card 2 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/65u9s5yt5qfq')">
+            <img src="https://i.ibb.co/jZ9LP0p3/af8953b1-2244-4ca6-bcaa-38c2580cdc1d.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">AKTIVITAS SERU DI TENGAH KESIBUKAN KANTOR</div>
+                <div class="card-desc">Gaya Hidup & Hiburan</div>
+                <span class="card-tag">Lifestyle</span>
             </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
 
-            <h1>Tontonan gratis</h1>
-            
-            <div class="video-stats">
-                <span><i class="fa-solid fa-eye"></i> 957k Penonton</span>
-                <span><i class="fa-solid fa-thumbs-up"></i> 98% Suka</span>
+        <!-- Card 3 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/e24m8ya9qwtv')">
+            <img src="https://i.ibb.co/twcL0Pv5/db7e01b5-2503-4438-95ab-7aae098c361d.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">PERJALANAN SANTAI MENIKMATI PEMANDANGAN</div>
+                <div class="card-desc">Petualangan & Eksplorasi</div>
+                <span class="card-tag">Adventure</span>
             </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
 
-            <!-- Tombol Utama (Membuka Smartlink di Tab Baru, Video terbuka otomatis di tab ini lewat script) -->
-            <a href="https://uplcm.com/4/11744117" class="btn-watch" target="_blank" onclick="playVideoDirectly(event)">
-                <i class="fa-solid fa-play"></i> TONTON VIDEO SEKARANG
-            </a>
-
-            <!-- Tombol Menuju Website / Blog Anda -->
-            <a href="https://uplcm.com/4/11744117" class="btn-blog" target="_blank">
-                <i class="fa-solid fa-globe"></i> Kunjungi Website
-            </a>
-
-            <div class="footer-note">
-                <i class="fa-solid fa-lock"></i> Koneksi aman & terenkripsi.
+        <!-- Card 4 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/6ks6ed7m6inh')">
+            <img src="https://i.ibb.co/wNJhqK37/8cda5b59-8025-4cc6-8bc2-7825e7448d26.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">KUMPULAN KISAH INSPIRATIF PILIHAN</div>
+                <div class="card-desc">Inspirasi & Talkshow</div>
+                <span class="card-tag">Business & Talk</span>
             </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/s974lbjnksm1')">
+            <img src="https://i.ibb.co/dwxN4tfL/da97dd12-bd34-4b6f-9ba2-2d5667e472b7.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">MENGISI WAKTU LUANG DENGAN KREATIVITAS</div>
+                <div class="card-desc">Seni & Kreativitas Mandiri</div>
+                <span class="card-tag">Art & Music</span>
+            </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/qvlpsbxjuqr5')">
+            <img src="https://i.ibb.co/R4Gx5PPq/e6376b9c-e058-45a3-aa23-3dbc38d59dcc.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">EKSPLORASI TEMPAT MENARIK DAN UNIK</div>
+                <div class="card-desc">Jalan-jalan & Tips Perjalanan</div>
+                <span class="card-tag">Travel & Lifestyle</span>
+            </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/cty3twqtwqij')">
+            <img src="https://i.ibb.co/fz57npqm/dc81dba4-8e26-4294-98ac-1911d30642e0.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">SEGESIT APA MEREKA DALAM BEKERJA?</div>
+                <div class="card-desc">Hiburan & Komedi Santai</div>
+                <span class="card-tag">Entertainment</span>
+            </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/jm55z0v4l33t')">
+            <img src="https://i.ibb.co/6R9mmS9n/image.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">KULINER FAVORIT DI KOTA BESAR</div>
+                <div class="card-desc">Uji Rasa & Kuliner Unik</div>
+                <span class="card-tag">Food & Culinary</span>
+            </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/vxua4opgsoh5')">
+            <img src="https://i.ibb.co/gL4dPrK9/a150523f-2820-48c8-b35a-253df398fc5b.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">TIPS MENJAGA KEBUGARAN TUBUH SETIAP HARI</div>
+                <div class="card-desc">Program Latihan & Kesehatan</div>
+                <span class="card-tag">Health & Fitness</span>
+            </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/o8zhl7wtlj44')">
+            <img src="https://i.ibb.co/gM1mWQfj/image.jpg" class="card-thumb" alt="Thumb">
+            <div class="card-info">
+                <div class="card-title">CERITA UNIK DIBALIK LAYAR PRODUKSI</div>
+                <div class="card-desc">Proses Pembuatan Film Pendek</div>
+                <span class="card-tag">Film & Kreativitas</span>
+            </div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+
+    </div>
+
+    <!-- Navigasi Bawah -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Beranda</span>
+        </div>
+        <div class="nav-item">
+            <i class="fa-solid fa-compass"></i>
+            <span>Jelajahi</span>
+        </div>
+        <div class="nav-item">
+            <i class="fa-solid fa-clapperboard"></i>
+            <span>Langganan</span>
+        </div>
+        <div class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profil</span>
         </div>
     </div>
 
+    <!-- Elemen In-Page Push (Fullscreen Popup) -->
+    <div id="inpage-push-overlay">
+        <div class="push-content">
+            <button class="push-close" onclick="closeInPagePush()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="push-badge">Pemberitahuan Khusus</div>
+            <div class="push-title">Update Saluran Tersedia!</div>
+            <div class="push-desc">Video eksklusif baru telah terbuka. Ketuk tombol di bawah untuk melanjutkan pemutaran konten resolusi penuh.</div>
+            <button class="push-btn" onclick="clickInPagePush()">LANJUTKAN NONTON</button>
+        </div>
+    </div>
+
+    <!-- Skrip Pengaturan Iklan & Redirect -->
     <script>
-        function playVideoDirectly(event) {
-            // Biarkan link target="_blank" membuka Smartlink Adsterra secara natural di tab baru
-            // Lalu arahkan halaman ini ke file video MP4 setelah jeda sangat singkat
+        const smartlinkURL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
+
+        // Fungsi untuk memicu smartlink saat video dipilih
+        function triggerSmartlink(embedUrl) {
+            window.open(smartlinkURL, '_blank');
             setTimeout(function() {
-                window.location.href = "https://trbnvideo.live/e/RjGbpB06";
+                window.location.href = embedUrl;
             }, 300);
         }
+
+        // Fungsi Timer In-Page Push setiap 20 detik
+        let pushInterval;
+
+        function startInPagePushTimer() {
+            // Jalankan setiap 20 detik (20000 ms)
+            pushInterval = setInterval(function() {
+                document.getElementById('inpage-push-overlay').style.display = 'flex';
+            }, 20000);
+        }
+
+        // Aksi ketika tombol In-Page Push diklik (membuka smartlink)
+        function clickInPagePush() {
+            window.open(smartlinkURL, '_blank');
+            document.getElementById('inpage-push-overlay').style.display = 'none';
+        }
+
+        // Aksi ketika tombol close (x) diklik
+        function closeInPagePush() {
+            document.getElementById('inpage-push-overlay').style.display = 'none';
+        }
+
+        // Mulai timer otomatis saat halaman pertama kali dimuat
+        window.onload = function() {
+            startInPagePushTimer();
+        };
     </script>
 
 </body>
