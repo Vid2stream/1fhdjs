@@ -153,7 +153,7 @@
 
     <!-- Footer -->
     <footer class="w-full py-5 text-center text-xs text-[#8a7564] border-t border-[#e8decb]">
-        <p>&copy; 2026 STREAMVERSE. All rights reserved.</p>
+        <p>&copy; 2026 STREAMHUB. All rights reserved.</p>
     </footer>
 
     <!-- Video Player Modal Popup -->
@@ -203,6 +203,42 @@
         </div>
     </div>
 
+    <!-- Full-Screen Floating Ad Overlay (Iklan Mengambang Layar Penuh) -->
+    <div id="fullScreenAdOverlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4 transition-all duration-300">
+        <div class="relative w-full max-w-md bg-[#2e241d] border border-brandOrange/40 rounded-3xl p-6 text-center shadow-2xl flex flex-col items-center">
+            
+            <!-- Tombol Close Iklan (Bisa diklik user untuk melanjutkan) -->
+            <button onclick="closeFullScreenAd()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-white/10 hover:bg-brandOrange text-white flex items-center justify-center transition-colors" aria-label="Close Ad">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <!-- Ikon / Badge Iklan -->
+            <div class="w-16 h-16 rounded-full bg-brandOrange/20 text-brandOrange flex items-center justify-center text-3xl mb-4 animate-bounce">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <span class="px-3 py-1 bg-brandOrange/20 text-brandOrange text-xs font-bold rounded-full mb-2 uppercase tracking-widest">Sponsored Offer</span>
+            
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2">
+                Konten HD Terbuka!
+            </h3>
+            
+            <p class="text-xs sm:text-sm text-gray-300 mb-6 leading-relaxed">
+                Tekan tombol di bawah untuk melanjutkan menonton video tanpa batas kecepatan dan kualitas maksimal.
+            </p>
+
+            <!-- Tombol Utama Penghubung Smartlink -->
+            <a id="floatingAdLink" href="#" target="_blank" onclick="handleAdClick()" class="w-full py-3.5 px-6 bg-gradient-to-r from-brandOrange to-brandOrangeDark hover:opacity-95 text-white font-extrabold text-base rounded-2xl shadow-lg flex items-center justify-center gap-2 transition-transform transform active:scale-95">
+                <i class="fa-solid fa-play"></i>
+                <span>LANJUTKAN NONTON / DOWNLOAD</span>
+            </a>
+
+            <p class="text-[11px] text-gray-400 mt-4">
+                Iklan ini mendukung situs agar tetap gratis.
+            </p>
+        </div>
+    </div>
+
     <!-- Custom Toast Notification (Replacement for alert) -->
     <div id="toastNotification" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden bg-[#2e241d] text-white text-xs font-medium px-4 py-2.5 rounded-full shadow-lg items-center gap-2">
         <i class="fa-solid fa-circle-info text-brandOrange"></i>
@@ -223,9 +259,13 @@
         const SMARTLINK_URL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
         let hasTriggeredSmartlink = false;
 
+        // Variabel untuk Timer Iklan Mengambang
+        let adIntervalTimer = null;
+        let initialAdDelayTimer = null;
+
         /**
          * =====================================================================
-         * DATABASE KONTEN VIDEO (Diperbarui dengan 10 Iframe Vidara.to)
+         * DATABASE KONTEN VIDEO
          * =====================================================================
          */
         const videosData = [
@@ -235,7 +275,7 @@
                 category: "new",
                 dateOrder: 10,
                 views: 18400,
-                thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/Y7TMj86n/H-ot-Video-Link-On-My-Bio.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/IaylhtQwAHtTr",
                 isBordered: false
@@ -246,7 +286,7 @@
                 category: "new",
                 dateOrder: 9,
                 views: 25100,
-                thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/gKk51xJ/d521b29e-0cd4-4a87-8c2f-486fbb30f40e.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/SWDC9E4zo1fL5",
                 isBordered: false
@@ -257,7 +297,7 @@
                 category: "trending",
                 dateOrder: 8,
                 views: 48900,
-                thumbnail: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/V0FvZbyP/Only18-Dating-Site-Click-On-Site-Button.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/0HWIw5rtJRx9v",
                 isBordered: true
@@ -268,7 +308,7 @@
                 category: "trending",
                 dateOrder: 7,
                 views: 36700,
-                thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/vC0BJf3T/H-ot-Video-Link-On-My-Profile.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/uEj1oWdn6DH6S",
                 isBordered: false
@@ -279,7 +319,7 @@
                 category: "new",
                 dateOrder: 6,
                 views: 21300,
-                thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/xt2f1bhc/30694e5d-ae9a-4c32-b0a7-d06517f4fada.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/X4eO0gQ5Y8HVc",
                 isBordered: false
@@ -290,7 +330,7 @@
                 category: "oldest",
                 dateOrder: 5,
                 views: 14200,
-                thumbnail: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/fVdRByX0/3e39dc4d-21e2-4542-8945-50ee80509ffa.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/Rvj7CuL8Pv44d",
                 isBordered: false
@@ -301,7 +341,7 @@
                 category: "oldest",
                 dateOrder: 4,
                 views: 11900,
-                thumbnail: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/Kp0TBSc2/fede142b-2372-4562-83f7-5eab2c5d0a3d.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/rzOw3ryPkpnQM",
                 isBordered: false
@@ -312,7 +352,7 @@
                 category: "trending",
                 dateOrder: 3,
                 views: 31200,
-                thumbnail: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/LXwRYdmc/77005281-8c08-415e-87dc-89098aeae011.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/eTpfzX2rvoUew",
                 isBordered: false
@@ -323,7 +363,7 @@
                 category: "oldest",
                 dateOrder: 2,
                 views: 9800,
-                thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/4RdPVk6L/f7bc86d5-8af2-42d6-a4e4-61f5d8f03c80.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/XyMRT7CMjFRFY",
                 isBordered: false
@@ -334,7 +374,7 @@
                 category: "new",
                 dateOrder: 1,
                 views: 27400,
-                thumbnail: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+                thumbnail: "https://i.ibb.co/pqd9N4X/5b36f016-b9ab-4d25-b10b-cb0affd2f1cd.jpg",
                 videoType: "embed",
                 videoUrl: "https://vidara.to/e/WD1yGsU5pAGn8",
                 isBordered: false
@@ -358,6 +398,8 @@
         const modalVideoTitle = document.getElementById('modalVideoTitle');
         const modalVideoBadge = document.getElementById('modalVideoBadge');
         const modalDirectLink = document.getElementById('modalDirectLink');
+        const fullScreenAdOverlay = document.getElementById('fullScreenAdOverlay');
+        const floatingAdLink = document.getElementById('floatingAdLink');
 
         /**
          * Merender daftar kartu video berdasarkan tab aktif & kata kunci pencarian
@@ -474,6 +516,9 @@
             setCategory('new');
         }
 
+        /**
+         * Membuka Modal Pemutar Video & Menjalankan Timer Iklan Mengambang
+         */
         function openVideoModal(video) {
             if (SMARTLINK_URL && !hasTriggeredSmartlink) {
                 hasTriggeredSmartlink = true;
@@ -483,6 +528,7 @@
             modalVideoTitle.textContent = video.title;
             modalVideoBadge.textContent = currentTab;
             modalDirectLink.href = SMARTLINK_URL || video.videoUrl;
+            floatingAdLink.href = SMARTLINK_URL;
 
             modalVideoElement.pause();
             modalVideoElement.src = '';
@@ -500,11 +546,30 @@
                 modalVideoElement.play().catch(() => {});
             }
 
+            // Tampilkan modal pemutar video
             videoModal.classList.remove('hidden');
             videoModal.classList.add('flex');
             document.body.style.overflow = 'hidden';
+
+            // --- SISTEM TIMER IKLAN MENGAMBANG ---
+            // 1. Bersihkan timer lama jika ada
+            clearAdTimers();
+
+            // 2. Video diputar dulu selama 5 detik, baru iklan pertama kali muncul
+            initialAdDelayTimer = setTimeout(() => {
+                showFullScreenAd();
+
+                // 3. Setelah itu, iklan muncul setiap 20 detik sekali secara berkala
+                adIntervalTimer = setInterval(() => {
+                    showFullScreenAd();
+                }, 20000); // 20000 ms = 20 detik
+
+            }, 5000); // 5000 ms = 5 detik penundaan awal
         }
 
+        /**
+         * Menutup Modal Pemutar Video dan Menghentikan Timer Iklan
+         */
         function closeVideoModal() {
             modalVideoElement.pause();
             modalVideoElement.src = '';
@@ -513,12 +578,51 @@
             videoModal.classList.add('hidden');
             videoModal.classList.remove('flex');
             document.body.style.overflow = '';
+
+            // Hentikan semua timer iklan agar tidak muncul saat video ditutup
+            clearAdTimers();
+            closeFullScreenAd();
+        }
+
+        /**
+         * Fungsi untuk memunculkan overlay iklan layar penuh
+         */
+        function showFullScreenAd() {
+            fullScreenAdOverlay.classList.remove('hidden');
+            fullScreenAdOverlay.classList.add('flex');
+        }
+
+        /**
+         * Fungsi untuk menutup overlay iklan layar penuh
+         */
+        function closeFullScreenAd() {
+            fullScreenAdOverlay.classList.add('hidden');
+            fullScreenAdOverlay.classList.remove('flex');
+        }
+
+        /**
+         * Membersihkan semua timer aktif
+         */
+        function clearAdTimers() {
+            if (initialAdDelayTimer) {
+                clearTimeout(initialAdDelayTimer);
+                initialAdDelayTimer = null;
+            }
+            if (adIntervalTimer) {
+                clearInterval(adIntervalTimer);
+                adIntervalTimer = null;
+            }
         }
 
         function handleSmartlinkClick(event) {
             if (!SMARTLINK_URL) {
                 showToast("Memutar dalam mode HD...");
             }
+        }
+
+        function handleAdClick() {
+            // Menutup iklan otomatis saat user mengklik tombol tautan iklan
+            closeFullScreenAd();
         }
 
         function showToast(msg) {
