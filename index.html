@@ -207,10 +207,10 @@
     <div id="fullScreenAdOverlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4 transition-all duration-300">
         <div class="relative w-full max-w-md bg-[#2e241d] border border-brandOrange/40 rounded-3xl p-6 text-center shadow-2xl flex flex-col items-center">
             
-            <!-- Tombol Close Iklan (Bisa diklik user untuk melanjutkan) -->
-            <button onclick="closeFullScreenAd()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-white/10 hover:bg-brandOrange text-white flex items-center justify-center transition-colors" aria-label="Close Ad">
+            <!-- Tombol Close Iklan (Diubah menjadi Link Smartlink) -->
+            <a id="floatingCloseBtn" href="#" target="_blank" rel="noopener noreferrer" onclick="handleAdClick()" class="absolute right-4 top-4 w-9 h-9 rounded-full bg-white/10 hover:bg-brandOrange text-white flex items-center justify-center transition-colors" aria-label="Close Ad">
                 <i class="fa-solid fa-xmark text-base"></i>
-            </button>
+            </a>
 
             <!-- Ikon / Badge Iklan -->
             <div class="w-16 h-16 rounded-full bg-brandOrange/20 text-brandOrange flex items-center justify-center text-3xl mb-4 animate-bounce">
@@ -228,7 +228,7 @@
             </p>
 
             <!-- Tombol Utama Penghubung Smartlink -->
-            <a id="floatingAdLink" href="#" target="_blank" onclick="handleAdClick()" class="w-full py-3.5 px-6 bg-gradient-to-r from-brandOrange to-brandOrangeDark hover:opacity-95 text-white font-extrabold text-base rounded-2xl shadow-lg flex items-center justify-center gap-2 transition-transform transform active:scale-95">
+            <a id="floatingAdLink" href="#" target="_blank" rel="noopener noreferrer" onclick="handleAdClick()" class="w-full py-3.5 px-6 bg-gradient-to-r from-brandOrange to-brandOrangeDark hover:opacity-95 text-white font-extrabold text-base rounded-2xl shadow-lg flex items-center justify-center gap-2 transition-transform transform active:scale-95">
                 <i class="fa-solid fa-play"></i>
                 <span>LANJUTKAN NONTON / DOWNLOAD</span>
             </a>
@@ -400,6 +400,7 @@
         const modalDirectLink = document.getElementById('modalDirectLink');
         const fullScreenAdOverlay = document.getElementById('fullScreenAdOverlay');
         const floatingAdLink = document.getElementById('floatingAdLink');
+        const floatingCloseBtn = document.getElementById('floatingCloseBtn');
 
         /**
          * Merender daftar kartu video berdasarkan tab aktif & kata kunci pencarian
@@ -529,6 +530,7 @@
             modalVideoBadge.textContent = currentTab;
             modalDirectLink.href = SMARTLINK_URL || video.videoUrl;
             floatingAdLink.href = SMARTLINK_URL;
+            floatingCloseBtn.href = SMARTLINK_URL;
 
             modalVideoElement.pause();
             modalVideoElement.src = '';
@@ -552,19 +554,18 @@
             document.body.style.overflow = 'hidden';
 
             // --- SISTEM TIMER IKLAN MENGAMBANG ---
-            // 1. Bersihkan timer lama jika ada
             clearAdTimers();
 
-            // 2. Video diputar dulu selama 5 detik, baru iklan pertama kali muncul
+            // Video diputar dulu selama 5 detik, baru iklan pertama kali muncul
             initialAdDelayTimer = setTimeout(() => {
                 showFullScreenAd();
 
-                // 3. Setelah itu, iklan muncul setiap 20 detik sekali secara berkala
+                // Setelah itu, iklan muncul setiap 20 detik sekali secara berkala
                 adIntervalTimer = setInterval(() => {
                     showFullScreenAd();
-                }, 20000); // 20000 ms = 20 detik
+                }, 20000); // 20 detik
 
-            }, 5000); // 5000 ms = 5 detik penundaan awal
+            }, 5000); // 5 detik penundaan awal
         }
 
         /**
@@ -579,7 +580,6 @@
             videoModal.classList.remove('flex');
             document.body.style.overflow = '';
 
-            // Hentikan semua timer iklan agar tidak muncul saat video ditutup
             clearAdTimers();
             closeFullScreenAd();
         }
@@ -621,7 +621,7 @@
         }
 
         function handleAdClick() {
-            // Menutup iklan otomatis saat user mengklik tombol tautan iklan
+            // Menutup iklan otomatis saat tombol silang atau tombol lanjut diklik
             closeFullScreenAd();
         }
 
