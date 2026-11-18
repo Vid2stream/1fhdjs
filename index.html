@@ -172,7 +172,7 @@
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            z-index: 1000;
+            z-index: 100;
         }
         .nav-item {
             display: flex;
@@ -445,41 +445,37 @@
     <!-- Skrip Pengaturan Iklan & Redirect -->
     <script>
         const smartlinkURL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
+        let targetEmbedUrl = "";
 
-        // Fungsi untuk memicu smartlink saat video dipilih
+        // Fungsi untuk memicu In-Page Push saat video diklik (alih-alih langsung redirect)
         function triggerSmartlink(embedUrl) {
-            window.open(smartlinkURL, '_blank');
-            setTimeout(function() {
-                window.location.href = embedUrl;
-            }, 300);
+            targetEmbedUrl = embedUrl; // Simpan URL tujuan pemutar
+            // Tampilkan In-Page Push fullscreen
+            document.getElementById('inpage-push-overlay').style.display = 'flex';
         }
 
-        // Fungsi Timer In-Page Push setiap 20 detik
-        let pushInterval;
-
-        function startInPagePushTimer() {
-            // Jalankan setiap 20 detik (20000 ms)
-            pushInterval = setInterval(function() {
-                document.getElementById('inpage-push-overlay').style.display = 'flex';
-            }, 20000);
-        }
-
-        // Aksi ketika tombol In-Page Push diklik (membuka smartlink)
+        // Aksi ketika tombol pada In-Page Push diklik
         function clickInPagePush() {
             window.open(smartlinkURL, '_blank');
             document.getElementById('inpage-push-overlay').style.display = 'none';
+            
+            // Lanjut ke pemutar video setelah jeda singkat
+            if (targetEmbedUrl) {
+                setTimeout(function() {
+                    window.location.href = targetEmbedUrl;
+                }, 300);
+            }
         }
 
-        // Aksi ketika tombol close (x) diklik
+        // Aksi ketika tombol close (x) diklik pada popup
         function closeInPagePush() {
             document.getElementById('inpage-push-overlay').style.display = 'none';
+            // Jika ditutup, langsung arahkan ke pemutar video
+            if (targetEmbedUrl) {
+                window.location.href = targetEmbedUrl;
+            }
         }
-
-        // Mulai timer otomatis saat halaman pertama kali dimuat
-        window.onload = function() {
-            startInPagePushTimer();
-        };
     </script>
 
 </body>
-</html>
+    </html>
