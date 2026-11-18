@@ -3,479 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Edition - Saluran Pilihan</title>
-    <!-- Google Fonts & FontAwesome untuk ikon -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>STREAMHUB- Video Collection</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
-        body {
-            background-color: #0b0b1a;
-            color: #ffffff;
-            padding-bottom: 70px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(11, 11, 26, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo-icon {
-            background: linear-gradient(135deg, #8a2be2, #ff007f);
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        .logo-text {
-            font-weight: 700;
-            letter-spacing: 1px;
-            font-size: 14px;
-            background: linear-gradient(90deg, #fff, #b19cd9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .header-icons {
-            display: flex;
-            gap: 15px;
-        }
-        .header-icons i {
-            font-size: 18px;
-            background: #1a1a3a;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .hero-section {
-            padding: 20px;
-        }
-        .hero-section h1 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-        .hero-section p {
-            font-size: 13px;
-            color: #a0a0c0;
-            line-height: 1.4;
-        }
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            margin: 20px 0 15px 0;
-        }
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .badge-count {
-            background: #1a1a3a;
-            font-size: 11px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            color: #b19cd9;
-            border: 1px solid #2d2d5a;
-        }
-        .container-cards {
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .card {
-            background: #151530;
-            border: 1px solid #252550;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            gap: 12px;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        .card:active {
-            transform: scale(0.98);
-            border-color: #8a2be2;
-        }
-        .card-thumb {
-            width: 90px;
-            height: 65px;
-            border-radius: 10px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .card-info {
-            flex-grow: 1;
-        }
-        .card-title {
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            line-height: 1.3;
-            color: #fff;
-        }
-        .card-desc {
-            font-size: 11px;
-            color: #9090b0;
-            margin-bottom: 8px;
-        }
-        .card-tag {
-            display: inline-block;
-            background: #231942;
-            color: #d8b4fe;
-            font-size: 9px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .play-btn {
-            background: #ffffff;
-            color: #0b0b1a;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 12px;
-            padding-left: 2px;
-        }
-        /* Navigasi Bawah */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #0b0b1a;
-            border-top: 1px solid #1a1a3a;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            z-index: 100;
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #707090;
-            font-size: 10px;
-            gap: 4px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .nav-item i {
-            font-size: 16px;
-        }
-        .nav-item.active {
-            color: #b19cd9;
-        }
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Styling In-Page Push Overlay Fullscreen */
-        #inpage-push-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(11, 11, 26, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .push-content {
-            background: #151530;
-            border: 2px solid #8a2be2;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 400px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
-            animation: popIn 0.3s ease-out;
-            position: relative;
-        }
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .push-badge {
-            background: #ff007f;
-            color: #fff;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        .push-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-        .push-desc {
-            font-size: 13px;
-            color: #a0a0c0;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .push-btn {
-            background: linear-gradient(135deg, #8a2be2, #ff007f);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
-        }
-        .push-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #707090;
-            font-size: 18px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
+    <!-- =====================================================================
+         [AD SCRIPT PLACEHOLDER - HEAD]
+         Tempelkan kode verifikasi atau skrip Popunder / Social Bar (Adsterra/Monetag) 
+         di dalam tag <head> ini jika diperlukan.
+    ====================================================================== -->
 
-    <!-- Header -->
-    <header>
-        <div class="logo-area">
-            <div class="logo-icon">
-                <i class="fa-solid fa-play" style="color: white; font-size: 14px;"></i>
-            </div>
-            <div class="logo-text">SPECIAL EDITION</div>
-        </div>
-        <div class="header-icons">
-            <i class="fa-solid fa-search"></i>
-            <i class="fa-solid fa-bars"></i>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <h1>PILIHAN TERBAIK</h1>
-        <p>Jelajahi kreator pilihan, temukan inspirasi baru, dan nikmati konten favoritmu di satu tempat.</p>
-    </div>
-
-    <!-- Section Title -->
-    <div class="section-header">
-        <span class="section-title">SALURAN PILIHAN</span>
-        <span class="badge-count">10 SALURAN</span>
-    </div>
-
-    <!-- Daftar Video Card (Total 10 Video) -->
-    <div class="container-cards">
-        
-        <!-- Card 1 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/paeh6a6virg0')">
-            <img src="https://i.ibb.co/1tjh0qKJ/fff341f1-4e92-4dec-bfa2-962e2e12833b.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">MOMEN SPESIAL BERSAMA REKAN KERJA</div>
-                <div class="card-desc">Dokumenter Kehidupan Sehari-hari</div>
-                <span class="card-tag">Vlog & Story</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/65u9s5yt5qfq')">
-            <img src="https://i.ibb.co/jZ9LP0p3/af8953b1-2244-4ca6-bcaa-38c2580cdc1d.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">AKTIVITAS SERU DI TENGAH KESIBUKAN KANTOR</div>
-                <div class="card-desc">Gaya Hidup & Hiburan</div>
-                <span class="card-tag">Lifestyle</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/e24m8ya9qwtv')">
-            <img src="https://i.ibb.co/twcL0Pv5/db7e01b5-2503-4438-95ab-7aae098c361d.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">PERJALANAN SANTAI MENIKMATI PEMANDANGAN</div>
-                <div class="card-desc">Petualangan & Eksplorasi</div>
-                <span class="card-tag">Adventure</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/6ks6ed7m6inh')">
-            <img src="https://i.ibb.co/wNJhqK37/8cda5b59-8025-4cc6-8bc2-7825e7448d26.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">KUMPULAN KISAH INSPIRATIF PILIHAN</div>
-                <div class="card-desc">Inspirasi & Talkshow</div>
-                <span class="card-tag">Business & Talk</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/s974lbjnksm1')">
-            <img src="https://i.ibb.co/dwxN4tfL/da97dd12-bd34-4b6f-9ba2-2d5667e472b7.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">MENGISI WAKTU LUANG DENGAN KREATIVITAS</div>
-                <div class="card-desc">Seni & Kreativitas Mandiri</div>
-                <span class="card-tag">Art & Music</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/qvlpsbxjuqr5')">
-            <img src="https://i.ibb.co/R4Gx5PPq/e6376b9c-e058-45a3-aa23-3dbc38d59dcc.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">EKSPLORASI TEMPAT MENARIK DAN UNIK</div>
-                <div class="card-desc">Jalan-jalan & Tips Perjalanan</div>
-                <span class="card-tag">Travel & Lifestyle</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/cty3twqtwqij')">
-            <img src="https://i.ibb.co/fz57npqm/dc81dba4-8e26-4294-98ac-1911d30642e0.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">SEGESIT APA MEREKA DALAM BEKERJA?</div>
-                <div class="card-desc">Hiburan & Komedi Santai</div>
-                <span class="card-tag">Entertainment</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 8 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/jm55z0v4l33t')">
-            <img src="https://i.ibb.co/6R9mmS9n/image.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">KULINER FAVORIT DI KOTA BESAR</div>
-                <div class="card-desc">Uji Rasa & Kuliner Unik</div>
-                <span class="card-tag">Food & Culinary</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 9 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/vxua4opgsoh5')">
-            <img src="https://i.ibb.co/gL4dPrK9/a150523f-2820-48c8-b35a-253df398fc5b.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">TIPS MENJAGA KEBUGARAN TUBUH SETIAP HARI</div>
-                <div class="card-desc">Program Latihan & Kesehatan</div>
-                <span class="card-tag">Health & Fitness</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-        <!-- Card 10 -->
-        <div class="card" onclick="triggerSmartlink('https://playmogo.com/e/o8zhl7wtlj44')">
-            <img src="https://i.ibb.co/gM1mWQfj/image.jpg" class="card-thumb" alt="Thumb">
-            <div class="card-info">
-                <div class="card-title">CERITA UNIK DIBALIK LAYAR PRODUKSI</div>
-                <div class="card-desc">Proses Pembuatan Film Pendek</div>
-                <span class="card-tag">Film & Kreativitas</span>
-            </div>
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
-        </div>
-
-    </div>
-
-    <!-- Navigasi Bawah -->
-    <div class="bottom-nav">
-        <div class="nav-item active">
-            <i class="fa-solid fa-house"></i>
-            <span>Beranda</span>
-        </div>
-        <div class="nav-item">
-            <i class="fa-solid fa-compass"></i>
-            <span>Jelajahi</span>
-        </div>
-        <div class="nav-item">
-            <i class="fa-solid fa-clapperboard"></i>
-            <span>Langganan</span>
-        </div>
-        <div class="nav-item">
-            <i class="fa-solid fa-user"></i>
-            <span>Profil</span>
-        </div>
-    </div>
-
-    <!-- Elemen In-Page Push (Fullscreen Popup) -->
-    <div id="inpage-push-overlay">
-        <div class="push-content">
-            <button class="push-close" onclick="closeInPagePush()"><i class="fa-solid fa-xmark"></i></button>
-            <div class="push-badge">Pemberitahuan Khusus</div>
-            <div class="push-title">Update Saluran Tersedia!</div>
-            <div class="push-desc">Video eksklusif baru telah terbuka. Ketuk tombol di bawah untuk melanjutkan pemutaran konten resolusi penuh.</div>
-            <button class="push-btn" onclick="clickInPagePush()">LANJUTKAN NONTON</button>
-        </div>
-    </div>
-
-    <!-- Skrip Pengaturan Iklan & Redirect -->
     <script>
-        const smartlinkURL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
-        let targetEmbedUrl = "";
-
-        // Fungsi untuk memicu In-Page Push saat video diklik (alih-alih langsung redirect)
-        function triggerSmartlink(embedUrl) {
-            targetEmbedUrl = embedUrl; // Simpan URL tujuan pemutar
-            // Tampilkan In-Page Push fullscreen
-            document.getElementById('inpage-push-overlay').style.display = 'flex';
-        }
-
-        // Aksi ketika tombol pada In-Page Push diklik
-        function clickInPagePush() {
-            window.open(smartlinkURL, '_blank');
-            document.getElementById('inpage-push-overlay').style.display = 'none';
-            
-            // Lanjut ke pemutar video setelah jeda singkat
-            if (targetEmbedUrl) {
-                setTimeout(function() {
-                    window.location.href = targetEmbedUrl;
-                }, 300);
-            }
-        }
-
-        // Aksi ketika tombol close (x) diklik pada popup
-        function closeInPagePush() {
-            document.getElementById('inpage-push-overlay').style.display = 'none';
-            // Jika ditutup, langsung arahkan ke pemutar video
-            if (targetEmbedUrl) {
-                window.location.href = targetEmbedUrl;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#f8f1e5',
+                        creamDark: '#ebe1d1',
+                        brandOrange: '#ff7b00',
+                        brandOrangeDark: '#d96500',
+                        titleBrown: '#c86414',
+                        dotDark: '#2e241d',
+                    }
+                }
             }
         }
     </script>
 
+    <style>
+        body {
+            background-color: #f8f1e5;
+            color: #2e241d;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f1e5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d8cbb8;
+            border-radius: 9999px;
+        }
+
+        /* Card hover & active transition */
+        .video-card {
+            transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.2s ease;
+        }
+        .video-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center selection:bg-orange-200">
+
+    <!-- Top White Header Bar -->
+    <header class="w-full bg-white py-3.5 px-4 shadow-[0_1px_4px_rgba(0,0,0,0.04)] sticky top-0 z-30 flex justify-center items-center">
+        <a href="#" onclick="resetFilters(event)" class="flex items-center gap-1.5 text-xl sm:text-2xl font-extrabold tracking-wider text-brandOrange uppercase select-none">
+            <span class="text-xl sm:text-2xl">🔥</span>
+            <span class="bg-gradient-to-r from-[#ff7b00] via-[#e66800] to-[#ff8c1a] bg-clip-text text-transparent">STREAMVERSE</span>
+            <span class="text-xl sm:text-2xl">🔥</span>
+        </a>
+    </header>
+
+    <!-- Main Container (Mobile-First Centered Wrapper) -->
+    <main class="w-full max-w-2xl px-4 pt-5 pb-12 flex-1">
+        
+        <!-- Section Title -->
+        <h1 class="text-[22px] sm:text-2xl font-bold text-[#d46915] tracking-tight mb-4">
+            Video Collection
+        </h1>
+
+        <!-- Pill-Shaped Filter Tabs -->
+        <div class="w-full bg-[#ebe1d1] p-1.5 rounded-full flex items-center justify-between mb-4 shadow-inner">
+            <button 
+                id="tab-new" 
+                onclick="setCategory('new')" 
+                class="filter-tab flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-200 bg-brandOrange text-white shadow-sm">
+                New
+            </button>
+            <button 
+                id="tab-trending" 
+                onclick="setCategory('trending')" 
+                class="filter-tab flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-200 text-[#3b2f26] hover:text-brandOrangeDark">
+                Trending
+            </button>
+            <button 
+                id="tab-oldest" 
+                onclick="setCategory('oldest')" 
+                class="filter-tab flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-200 text-[#3b2f26] hover:text-brandOrangeDark">
+                Oldest
+            </button>
+        </div>
+
+        <!-- Search Input Box -->
+        <div class="relative w-full mb-5">
+            <input 
+                type="text" 
+                id="searchInput" 
+                oninput="handleSearch()" 
+                placeholder="Search videos..." 
+                class="w-full bg-white text-sm sm:text-base text-gray-800 placeholder-gray-400 pl-4 pr-10 py-3 rounded-xl border border-[#e5dac9] focus:outline-none focus:border-brandOrange focus:ring-2 focus:ring-brandOrange/20 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-all"
+            >
+            <button 
+                id="clearSearchBtn" 
+                onclick="clearSearch()" 
+                class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1"
+                aria-label="Clear search">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+
+        <!-- =====================================================================
+             [AD BANNER PLACEHOLDER - TOP]
+             Tempelkan kode banner iklan 320x50 atau Native Banner di bawah ini jika mau.
+        ====================================================================== -->
+
+        <!-- 2-Column Responsive Video Grid -->
+        <div id="videoGrid" class="grid grid-cols-2 gap-3.5 sm:gap-4">
+            <!-- Cards will be dynamically injected here by JavaScript -->
+        </div>
+
+        <!-- Empty State (Shown when search yields no results) -->
+        <div id="emptyState" class="hidden flex-col items-center justify-center py-14 text-center">
+            <div class="w-14 h-14 rounded-full bg-[#ebe1d1] flex items-center justify-center text-brandOrange text-2xl mb-3">
+                <i class="fa-solid fa-video-slash"></i>
+            </div>
+            <p class="text-base font-semibold text-[#5c493b]">Video tidak ditemukan</p>
+            <p class="text-xs text-[#8a7564] mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
+            <button onclick="resetFilters()" class="mt-4 px-5 py-2 bg-brandOrange text-white text-xs font-semibold rounded-full shadow-sm hover:bg-brandOrangeDark transition">
+                Tampilkan Semua Video
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-5 text-center text-xs text-[#8a7564] border-t border-[#e8decb]">
+        <p>&copy; 2026 STREAMVERSE. All rights reserved.</p>
+    </footer>
+
+    <!-- Video Player Modal Popup -->
+    <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-5 transition-opacity">
+        <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-[#e5dac9] animate-[fadeIn_0.2s_ease-out]">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between px-4 py-3 bg-[#fdfaf5] border-b border-[#efe6d8]">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brandOrange animate-pulse"></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brandOrangeDark">Now Playing</span>
+                </div>
+                <button onclick="closeVideoModal()" class="w-8 h-8 rounded-full bg-[#ebe1d1] hover:bg-brandOrange hover:text-white text-[#3b2f26] flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Video Player Frame / Container -->
+            <div class="relative w-full aspect-video bg-black flex items-center justify-center">
+                <!-- HTML5 Video Player (used for direct .mp4 links) -->
+                <video id="modalVideoElement" class="w-full h-full object-contain hidden" controls playsinline></video>
+                
+                <!-- Iframe Embed Player (used for YouTube / Doodstream / Streamtape / Vidhide embeds) -->
+                <iframe id="modalIframeElement" class="w-full h-full hidden" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            </div>
+
+            <!-- Modal Video Info & Action -->
+            <div class="p-4 bg-white">
+                <h2 id="modalVideoTitle" class="text-base sm:text-lg font-bold text-[#c86414] leading-snug mb-2">
+                    Judul Video
+                </h2>
+                <div class="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+                    <span class="font-medium text-gray-600">StreamVerse Official</span>
+                    <span id="modalVideoBadge" class="px-2.5 py-0.5 rounded-full bg-[#f8f1e5] text-[#c86414] font-semibold capitalize">
+                        New
+                    </span>
+                </div>
+
+                <!-- Optional Direct Smartlink / Download CTA Button inside Modal -->
+                <div class="mt-4">
+                    <a id="modalDirectLink" href="#" target="_blank" rel="noopener noreferrer" onclick="handleSmartlinkClick(event)" class="w-full py-2.5 px-4 bg-brandOrange hover:bg-brandOrangeDark text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-sm transition-colors">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Watch Full HD / Download</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification (Replacement for alert) -->
+    <div id="toastNotification" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden bg-[#2e241d] text-white text-xs font-medium px-4 py-2.5 rounded-full shadow-lg items-center gap-2">
+        <i class="fa-solid fa-circle-info text-brandOrange"></i>
+        <span id="toastMessage">Memuat video...</span>
+    </div>
+
+    <!-- =====================================================================
+         [AD SCRIPT PLACEHOLDER - BODY]
+         Tempelkan kode skrip iklan (Social Bar / Popunder) sebelum penutup </body>
+    ====================================================================== -->
+
+    <script>
+        /**
+         * =====================================================================
+         * KONFIGURASI MONETISASI & SMARTLINK (OPSIONAL)
+         * =====================================================================
+         */
+        const SMARTLINK_URL = "https://www.profitableratecpmnetwork.com/agijdjkf?key=b68403d796344c04660419b144a9cea4";
+        let hasTriggeredSmartlink = false;
+
+        /**
+         * =====================================================================
+         * DATABASE KONTEN VIDEO (Diperbarui dengan 10 Iframe Vidara.to)
+         * =====================================================================
+         */
+        const videosData = [
+            {
+                id: 1,
+                title: "Momen Santai Sore Hari di Kafe Favorit",
+                category: "new",
+                dateOrder: 10,
+                views: 18400,
+                thumbnail: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/IaylhtQwAHtTr",
+                isBordered: false
+            },
+            {
+                id: 2,
+                title: "Keseruan di Balik Layar Sesi Pemotretan",
+                category: "new",
+                dateOrder: 9,
+                views: 25100,
+                thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/SWDC9E4zo1fL5",
+                isBordered: false
+            },
+            {
+                id: 3,
+                title: "Suasana Hangat Ruang Tamu Penuh Cerita",
+                category: "trending",
+                dateOrder: 8,
+                views: 48900,
+                thumbnail: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/0HWIw5rtJRx9v",
+                isBordered: true
+            },
+            {
+                id: 4,
+                title: "Gaya Kasual Hangout Bareng Teman Akhir Pekan",
+                category: "trending",
+                dateOrder: 7,
+                views: 36700,
+                thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/uEj1oWdn6DH6S",
+                isBordered: false
+            },
+            {
+                id: 5,
+                title: "Aksi Seru di Sudut Ruangan Studio",
+                category: "new",
+                dateOrder: 6,
+                views: 21300,
+                thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/X4eO0gQ5Y8HVc",
+                isBordered: false
+            },
+            {
+                id: 6,
+                title: "Ekspresi Natural Senyum Pagi Hari",
+                category: "oldest",
+                dateOrder: 5,
+                views: 14200,
+                thumbnail: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/Rvj7CuL8Pv44d",
+                isBordered: false
+            },
+            {
+                id: 7,
+                title: "Aktivitas Seru Menjelang Sore Menemani Waktu Luang",
+                category: "oldest",
+                dateOrder: 4,
+                views: 11900,
+                thumbnail: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/rzOw3ryPkpnQM",
+                isBordered: false
+            },
+            {
+                id: 8,
+                title: "Kumpul Santai Membahas Topik Menarik",
+                category: "trending",
+                dateOrder: 3,
+                views: 31200,
+                thumbnail: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/eTpfzX2rvoUew",
+                isBordered: false
+            },
+            {
+                id: 9,
+                title: "Vibes Tenang Menikmati Suasana Malam",
+                category: "oldest",
+                dateOrder: 2,
+                views: 9800,
+                thumbnail: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/XyMRT7CMjFRFY",
+                isBordered: false
+            },
+            {
+                id: 10,
+                title: "Koleksi Klip Eksklusif Paling Dicari",
+                category: "new",
+                dateOrder: 1,
+                views: 27400,
+                thumbnail: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+                videoType: "embed",
+                videoUrl: "https://vidara.to/e/WD1yGsU5pAGn8",
+                isBordered: false
+            }
+        ];
+
+        // State Aplikasi
+        let currentTab = 'new';
+        let searchQuery = '';
+
+        // Elemen DOM
+        const videoGrid = document.getElementById('videoGrid');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+        // Modal Elements
+        const videoModal = document.getElementById('videoModal');
+        const modalVideoElement = document.getElementById('modalVideoElement');
+        const modalIframeElement = document.getElementById('modalIframeElement');
+        const modalVideoTitle = document.getElementById('modalVideoTitle');
+        const modalVideoBadge = document.getElementById('modalVideoBadge');
+        const modalDirectLink = document.getElementById('modalDirectLink');
+
+        /**
+         * Merender daftar kartu video berdasarkan tab aktif & kata kunci pencarian
+         */
+        function renderVideos() {
+            let filtered = videosData.filter(video => 
+                video.title.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+
+            if (currentTab === 'new') {
+                filtered.sort((a, b) => b.dateOrder - a.dateOrder);
+            } else if (currentTab === 'trending') {
+                filtered.sort((a, b) => b.views - a.views);
+            } else if (currentTab === 'oldest') {
+                filtered.sort((a, b) => a.dateOrder - b.dateOrder);
+            }
+
+            videoGrid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                videoGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+                return;
+            } else {
+                videoGrid.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+            }
+
+            filtered.forEach(video => {
+                const card = document.createElement('article');
+                const borderStyle = video.isBordered 
+                    ? 'border border-[#f2a359]' 
+                    : 'border border-[#e6dccb]';
+
+                card.className = `video-card bg-white rounded-2xl overflow-hidden shadow-[0_2px_6px_rgba(0,0,0,0.04)] flex flex-col justify-between cursor-pointer ${borderStyle}`;
+                card.onclick = () => openVideoModal(video);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden group">
+                            <img 
+                                src="${video.thumbnail}" 
+                                alt="${video.title}" 
+                                loading="lazy"
+                                onerror="this.src='https://placehold.co/600x450/2e241d/ff7b00?text=StreamVerse'"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            >
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+                            
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-brandOrange text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
+                                    <i class="fa-solid fa-play text-base sm:text-lg ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-3 pt-3 pb-2">
+                            <h2 class="text-[13.5px] sm:text-[15px] font-bold text-titleBrown leading-[1.35] line-clamp-3">
+                                ${video.title}
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="px-3 pb-3 pt-1 flex items-center justify-between mt-auto">
+                        <span class="text-[11px] sm:text-xs font-medium text-[#75685e]">
+                            StreamVerse
+                        </span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-dotDark inline-block"></span>
+                    </div>
+                `;
+
+                videoGrid.appendChild(card);
+            });
+        }
+
+        function setCategory(category) {
+            currentTab = category;
+
+            const tabs = ['new', 'trending', 'oldest'];
+            tabs.forEach(tab => {
+                const el = document.getElementById(`tab-${tab}`);
+                if (tab === category) {
+                    el.className = 'filter-tab flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-200 bg-brandOrange text-white shadow-sm';
+                } else {
+                    el.className = 'filter-tab flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-200 text-[#3b2f26] hover:text-brandOrangeDark';
+                }
+            });
+
+            renderVideos();
+        }
+
+        function handleSearch() {
+            searchQuery = searchInput.value.trim();
+            if (searchQuery.length > 0) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+            }
+            renderVideos();
+        }
+
+        function clearSearch() {
+            searchInput.value = '';
+            searchQuery = '';
+            clearSearchBtn.classList.add('hidden');
+            renderVideos();
+        }
+
+        function resetFilters(event) {
+            if (event) event.preventDefault();
+            clearSearch();
+            setCategory('new');
+        }
+
+        function openVideoModal(video) {
+            if (SMARTLINK_URL && !hasTriggeredSmartlink) {
+                hasTriggeredSmartlink = true;
+                window.open(SMARTLINK_URL, '_blank');
+            }
+
+            modalVideoTitle.textContent = video.title;
+            modalVideoBadge.textContent = currentTab;
+            modalDirectLink.href = SMARTLINK_URL || video.videoUrl;
+
+            modalVideoElement.pause();
+            modalVideoElement.src = '';
+            modalVideoElement.classList.add('hidden');
+            
+            modalIframeElement.src = '';
+            modalIframeElement.classList.add('hidden');
+
+            if (video.videoType === 'embed') {
+                modalIframeElement.src = video.videoUrl;
+                modalIframeElement.classList.remove('hidden');
+            } else {
+                modalVideoElement.src = video.videoUrl;
+                modalVideoElement.classList.remove('hidden');
+                modalVideoElement.play().catch(() => {});
+            }
+
+            videoModal.classList.remove('hidden');
+            videoModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            modalVideoElement.pause();
+            modalVideoElement.src = '';
+            modalIframeElement.src = '';
+
+            videoModal.classList.add('hidden');
+            videoModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        function handleSmartlinkClick(event) {
+            if (!SMARTLINK_URL) {
+                showToast("Memutar dalam mode HD...");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.textContent = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 2500);
+        }
+
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVideos();
+        });
+    </script>
 </body>
-    </html>
+</html>
